@@ -19,7 +19,7 @@
 
 <style>
 td:first-child {
-    width: 200px
+    width: 50px
 }
 
 td:first-child + td {
@@ -27,6 +27,10 @@ td:first-child + td {
 }
 
 td:first-child + td + td {
+            width: 120px
+}
+
+td:first-child + td + td + td{
             width: 120px
 }
 
@@ -40,10 +44,10 @@ td:first-child + td + td {
 				<div class="table-title">
 					<div class="row">
 						<div class="col-xs-6">
-							<h2>Lista de categorias</h2>
+							<h2>Lista de fornecedores</h2>
 						</div>
 						<div class="col-xs-6">
-							<a asp-action="Create" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Adicionar categoria</span></a>					
+							<a asp-action="Create" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Adicionar fornecedor</span></a>					
 						</div>
 					</div>
 				</div>
@@ -62,16 +66,16 @@ td:first-child + td + td {
 							
 							<tr>
 								<td>
-									<a>@item.id</a>
+									@item.id
 								</td>
 								<td>
-									@Html.DisplayFor(modelItem => item.nomefornecedor)
+									@item.nomefornecedor
 								</td>
 								<td>
-									@Html.DisplayFor(modelItem => item.endereco)
+									@item.endereco
 								</td>
 								<td>
-									@Html.DisplayFor(modelItem => item.fone)
+									@item.fone
 								</td>
 								<td>
 									<a asp-action="Edit" asp-route-id="@item.id" class="edit"><i class="fa fa-pencil" data-toggle="tooltip" title="Edit"></i></a> 

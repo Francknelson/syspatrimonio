@@ -4,50 +4,95 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="site.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.login)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.senha)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.status)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.login)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.senha)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.status)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-            </td>
-        </tr>
+<style>
+td:first-child {
+    width: 50px
 }
-    </tbody>
-</table>
+
+td:first-child + td {
+    width: 150px
+}
+
+td:first-child + td + td {
+     width: 120px
+}
+td:first-child + td + td + td{
+     width: 120px
+}
+
+</style>
+
+</head>
+<body>
+    <div class="container">
+		<div class="table-responsive">
+			<div class="table-wrapper">
+				<div class="table-title">
+					<div class="row">
+						<div class="col-xs-6">
+							<h2>Lista de usuários</h2>
+						</div>
+						<div class="col-xs-6">
+							<a asp-action="Create" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Adicionar usuário</span></a>					
+						</div>
+					</div>
+				</div>
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nome</th>
+							<th>Login</th>
+							<th>Status</th>
+							<th>Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model) {
+							
+							<tr>
+								<td>
+									<a>@item.id</a>
+								</td>
+								<td>
+									<a>@item.nome</a>
+								</td>
+								<td>
+									<a>@item.login</a>
+								</td>
+								<td>
+									<a>@item.status</a>
+								</td>
+								<td>
+									<a asp-action="Edit" asp-route-id="@item.id" class="edit"><i class="fa fa-pencil" data-toggle="tooltip" title="Edit"></i></a> 
+									<a asp-action="Details" asp-route-id="@item.id" class="details"><i class="fa fa-info-circle" data-toggle="tooltip" title="Details"></i></a>
+									<a asp-action="Delete" asp-route-id="@item.id"  class="delete"><i class="fa fa-trash-o" data-toggle="tooltip" title="Delete"></i> </a>
+								</td>
+							
+						</tr>
+						}
+							 
+					</tbody>
+				</table>
+				
+				<div class="clearfix">
+					<div class="hint-text">Mostrando todos os resultados.</div>
+				</div>
+			</div>
+		</div>        
+    </div>
+</body>
+

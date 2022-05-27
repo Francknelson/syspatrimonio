@@ -3,28 +3,51 @@
 @{
     ViewData["Title"] = "Details";
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="site.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<h1>Details</h1>
+</head>
+<body>
+    <div class="container">
+		<div class="table-responsive">
+			<div class="table-wrapper">
+				<div class="table-title">
+					<div class="row">
+						<div class="col-xs-6">
+							<h2>Detalhes do local @Html.DisplayFor(model => model.nomelocal)</h2>
+						</div>
+	
+					</div>
+				</div>
 
-<div>
-    <h4>DbLocal</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.nomelocal)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.nomelocal)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.descricaolocal)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.descricaolocal)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+                <dl class="row">
+                    <dt class = "col-sm-2">
+                        Nome
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.nomelocal)
+                    </dd>
+                    <dt class = "col-sm-2">
+                        Descrição
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.descricaolocal)
+                    </dd>
+                </dl>
+                <form asp-action="Delete" class="col-4" style="text-align:right;">
+                    <input type="hidden" asp-for="id" />
+                    <a asp-action="Index" class="btn btn-warning" >Voltar</a>
+                    <a asp-action="Edit" asp-route-id="@Model?.id" class="btn btn-primary">Editar</a>
+                </form>
+			</div>
+		</div>        
+    </div>
+</body>
