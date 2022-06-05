@@ -11,12 +11,16 @@ namespace SysPatrimonio.Models
         public string numetiqueta { get; set; }
         public string nomepatrimonio { get; set; }
         public string descricaopatrimonio { get; set; }
-        public string valorpatrimonio { get; set; }
+        public decimal valorpatrimonio { get; set; }
         public string marcamodelo { get; set; }
-        public DateTime dataaquisicao { get; set; }
-        public DateTime databaixa { get; set; }
+        public DateOnly dataaquisicao { get; set; }
+        public DateOnly databaixa { get; set; }
         public int numnf { get; set; }
         public string numserie { get; set; }
         public string situacao { get; set; }
+        public int idcategoria { get; set; }
+        public int idlocal { get; set; }
+        public int iddepartamento { get; set; }
+        public int idfornecedor { get; set; }
     }
 }

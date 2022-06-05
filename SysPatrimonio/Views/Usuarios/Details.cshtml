@@ -3,63 +3,46 @@
 @{
     ViewData["Title"] = "Details";
 }
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="site.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-</head>
-<body>
-    <div class="container">
-		<div class="table-responsive">
-			<div class="table-wrapper">
-				<div class="table-title">
-					<div class="row">
-						<div class="col-xs-6">
-							<h2>Detalhes do usuário @Html.DisplayFor(model => model.nome)</h2>
-						</div>
-	
-					</div>
-				</div>
+<div class="row justify-content-center">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-header">Detalhes do usuário @Html.DisplayFor(model => model.nome)</div>
 
-                <dl class="row">
-                    <dt class = "col-sm-2">
-                        Nome
-                    </dt>
-                    <dd class = "col-sm-10">
-                        @Html.DisplayFor(model => model.nome)
-                    </dd>
-                    <dt class = "col-sm-2">
-                        Login
-                    </dt>
-                    <dd class = "col-sm-10">
-                        @Html.DisplayFor(model => model.login)
-                    </dd>
-                    <dt class = "col-sm-2">
-                        Senha
-                    </dt>
-                    <dd class = "col-sm-10">
-                        @Html.DisplayFor(model => model.senha)
-                    </dd>
-                    <dt class = "col-sm-2">
-                        Status
-                    </dt>
-                    <dd class = "col-sm-10">
-                        @Html.DisplayFor(model => model.status)
-                    </dd>
-                </dl>
-                <form asp-action="Delete" class="col-4" style="text-align:right;">
+            <div class="card-body">
+                <table class="table table-hover">
+                    <colgroup>
+                        <col class="col-4"/>
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th>Nome</th>
+                            <td> @Html.DisplayFor(model => model.nome)</td>
+                        </tr>
+                        <tr>
+                            <th>Login</th>
+                            <td> @Html.DisplayFor(model => model.login)</td>
+                        </tr>
+                        <tr>
+                            <th>Senha</th>
+                            <td> @Html.DisplayFor(model => model.senha)</td>
+                        </tr>
+                        <tr>
+                            <th>Status</th>
+                            <td> @Html.DisplayFor(model => model.status)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer ">
+                <form asp-action="Delete" class="text-end">
                     <input type="hidden" asp-for="id" />
                     <a asp-action="Index" class="btn btn-warning" >Voltar</a>
                     <a asp-action="Edit" asp-route-id="@Model?.id" class="btn btn-primary">Editar</a>
                 </form>
-			</div>
-		</div>        
+            </div>
+        </div>
     </div>
-</body>
+</div>
+      
+

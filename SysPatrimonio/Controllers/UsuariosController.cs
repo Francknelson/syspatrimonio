@@ -21,6 +21,13 @@ namespace SysPatrimonio.Controllers
         // GET: Usuarios
         public async Task<IActionResult> Index()
         {
+
+            ViewBag.Nome = (from c in _context.Usuarios
+                            select c.nome).Distinct();
+
+            ViewBag.Login = (from c in _context.Usuarios
+                            select c.login).Distinct();
+
               return _context.Usuarios != null ? 
                           View(await _context.Usuarios.ToListAsync()) :
                           Problem("Entity set 'Context.Usuarios'  is null.");

@@ -10,6 +10,7 @@ namespace SysPatrimonio.Models
         public int id { get; set; }
         public string nomedepartamento { get; set; }
         public string descricaodepartamento { get; set; }
+        public int? idlocal { get; set; }
 
     }
 }

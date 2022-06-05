@@ -94,5 +94,14 @@ td:first-child + td + td + td{
 			</div>
 		</div>        
     </div>
+
+
+	<p>
+		@using (Html.BeginForm()){
+			<text>Nome</text>@Html.DropDownList("nome", new SelectList(ViewBag.Nome))
+			<text>Login</text>@Html.DropDownList("nome", new SelectList(ViewBag.Login))
+			<input type="submit" value="Procurar" />
+		}
+	</p>
 </body>
 

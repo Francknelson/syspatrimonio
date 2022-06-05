@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SysPatrimonio.Models.DbDepartamento>
+﻿@model IEnumerable<SysPatrimonio.Models.DtoDepartamento>
 
 @{
     ViewData["Title"] = "Index";
@@ -54,6 +54,7 @@ td:first-child + td + td {
 							<th>ID</th>
 							<th>Nome</th>
 							<th>Descrição</th>
+							<th>Local</th>
 							<th>Ações</th>
 						</tr>
 					</thead>
@@ -61,14 +62,17 @@ td:first-child + td + td {
 						@foreach (var item in Model) {
 							
 							<tr>
-								<td>
+								<td class="col-3">
 									@item.id
 								</td>
-								<td>
+								<td class="col-3">
 									@item.nomedepartamento
 								</td>
-								<td>
+								<td class="col-3">
 									@item.descricaodepartamento
+								</td>
+								<td class="col-3">
+									@item.nomelocal
 								</td>
 								<td>
 									<a asp-action="Edit" asp-route-id="@item.id" class="edit"><i class="fa fa-pencil" data-toggle="tooltip" title="Edit"></i></a> 

@@ -21,9 +21,27 @@ namespace SysPatrimonio.Controllers
         // GET: Patrimonios
         public async Task<IActionResult> Index()
         {
-              return _context.Patrimonios != null ? 
-                          View(await _context.Patrimonios.ToListAsync()) :
-                          Problem("Entity set 'Context.Patrimonios'  is null.");
+            List<DtoPatrimonio> list = (from p in _context.Patrimonios
+                                          join c in _context.Categorias on p.idcategoria equals c.id
+                                          join l in _context.Locais on p.idlocal equals l.id
+                                          join d in _context.Departamentos on p.iddepartamento equals d.id
+                                          join f in _context.Fornecedores on p.idfornecedor equals f.id
+                                          select new DtoPatrimonio
+                                          {
+                                              id = p.id,
+                                              numetiqueta = p.numetiqueta,
+                                              nomepatrimonio = p.nomepatrimonio,
+                                              valorpatrimonio = p.valorpatrimonio,
+                                              situacao = p.situacao,
+                                              nomecategoria = c.descricaocategoria,
+                                              nomelocal = l.nomelocal,
+                                              nomedepartamento = d.nomedepartamento,
+                                              nomefornecedor = f.nomefornecedor
+                                          }).ToList();
+
+            return _context.Patrimonios != null ?
+                          View(list) :
+                          Problem("Entity set 'Context.Departamentos'  is null.");
         }
 
         // GET: Patrimonios/Details/5
@@ -47,6 +65,12 @@ namespace SysPatrimonio.Controllers
         // GET: Patrimonios/Create
         public IActionResult Create()
         {
+            ViewBag.Categoria = new SelectList(_context.Categorias, "id", "descricaocategoria");
+            ViewBag.Local = new SelectList(_context.Locais, "id", "nomelocal");
+            ViewBag.Departamento = new SelectList(_context.Departamentos, "id", "nomedepartamento", "descricaodepartamento");
+            ViewBag.Fornecedor = new SelectList(_context.Fornecedores, "id", "nomefornecedor", "endereco", "fone");
+
+            
             return View();
         }
 
@@ -55,7 +79,21 @@ namespace SysPatrimonio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,numetiqueta,nomepatrimonio,descricaopatrimonio,valorpatrimonio,marcamodelo,dataaquisicao,databaixa,numnf,numserie,situacao")] DbPatrimonio dbPatrimonio)
+        public async Task<IActionResult> Create([Bind("id," +
+                                                        "numetiqueta," +
+                                                        "nomepatrimonio," +
+                                                        "descricaopatrimonio," +
+                                                        "valorpatrimonio," +
+                                                        "marcamodelo," +
+                                                        "dataaquisicao," +
+                                                        "databaixa," +
+                                                        "numnf," +
+                                                        "numserie," +
+                                                        "situacao," +
+                                                        "idcategoria," +
+                                                        "idlocal," +
+                                                        "iddepartamento," +
+                                                        "idfornecedor")] DbPatrimonio dbPatrimonio)
         {
             if (ModelState.IsValid)
             {

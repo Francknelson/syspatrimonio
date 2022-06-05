@@ -1,13 +1,28 @@
 body {
     color: #566787;
-    background: #f5f5f5;
-    font-family: 'Varela Round', sans-serif;
-    font-size: 13px;
+    background: #f5f5f5;''
 }
 
-.table-responsive {
-    margin: 30px 0;
+.page-wrapper{
+    margin-top: 3rem;
 }
+
+.left-menu{
+    width: 200px;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    background: red;
+    height: 100%;
+}
+
+.card-header {
+    background-color: #435d7d;
+    color: #fff;
+    font-size: 1.4rem;
+    padding: .6rem;
+}
+
 
 .table-wrapper {
     min-width: 500px;

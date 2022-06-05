@@ -21,8 +21,18 @@ namespace SysPatrimonio.Controllers
         // GET: Departamentos
         public async Task<IActionResult> Index()
         {
+            List<DtoDepartamento> list = (from d in _context.Departamentos
+                                         join l in _context.Locais on d.idlocal equals l.id
+                                         select new DtoDepartamento
+                                         {
+                                             id = d.id,
+                                             nomedepartamento = d.nomedepartamento,
+                                             descricaodepartamento = d.descricaodepartamento,
+                                             nomelocal = l.nomelocal
+                                         }).ToList();
+
               return _context.Departamentos != null ? 
-                          View(await _context.Departamentos.ToListAsync()) :
+                          View(list) :
                           Problem("Entity set 'Context.Departamentos'  is null.");
         }
 
@@ -47,6 +57,9 @@ namespace SysPatrimonio.Controllers
         // GET: Departamentos/Create
         public IActionResult Create()
         {
+
+            ViewBag.Local = new SelectList(_context.Locais, "id", "nomelocal");
+
             return View();
         }
 
@@ -55,7 +68,7 @@ namespace SysPatrimonio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,nomedepartamento,descricaodepartamento")] DbDepartamento dbDepartamento)
+        public async Task<IActionResult> Create([Bind("id,nomedepartamento,descricaodepartamento,idlocal")] DbDepartamento dbDepartamento)
         {
             if (ModelState.IsValid)
             {
